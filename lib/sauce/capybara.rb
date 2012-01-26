@@ -17,7 +17,7 @@ module Sauce
                                              :quiet => true)
           @sauce_tunnel.wait_until_ready
           @browser = Sauce::Selenium2.new(:name => "Capybara test.",
-                                          :browser_url => "http://#{$uri.host || @domain}")
+                                          :browser_url => "#{$uri.scheme || "http"}://#{$uri.host || @domain}")
           at_exit do
             @browser.quit
             @sauce_tunnel.disconnect
